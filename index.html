@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tredcroft Screens</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #08080e;
+      --surface: #11111b;
+      --surface-hover: #181828;
+      --border: #1e1e32;
+      --text: #e2e2f0;
+      --text-muted: #7a7a9a;
+      --accent-blue: #4a6cf7;
+      --accent-violet: #8b5cf6;
+      --accent-gradient: linear-gradient(135deg, #4a6cf7, #8b5cf6);
+      --hui: #22c55e;
+      --pfui: #ef4444;
+      --meh: #f59e0b;
+      --radius: 10px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+      padding: 2rem 1.5rem 1rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .logo span {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* FILTERS */
+    .filters {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      max-width: 720px;
+      margin: 0 auto;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .filters::-webkit-scrollbar { display: none; }
+
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    /* FILM LIST */
+    .film-list {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* FILM CARD */
+    .film-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+
+    .film-card:hover {
+      background: var(--surface-hover);
+      border-color: #2a2a44;
+    }
+
+    .film-poster {
+      width: 72px;
+      min-width: 72px;
+      height: 108px;
+      border-radius: 6px;
+      background: #1a1a2e;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .film-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .film-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .film-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .film-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .film-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .film-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .film-genre {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .film-verdict {
+      font-size: 0.85rem;
+      color: #b0b0cc;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* RATING BADGE */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+
+    .badge.hui {
+      background: rgba(34, 197, 94, 0.12);
+      color: var(--hui);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .badge.pfui {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--pfui);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .badge.meh {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--meh);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    /* EMPTY STATE */
+    .count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 0 1.5rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 480px) {
+      header { padding: 1.5rem 1rem 0.75rem; }
+      header h1 { font-size: 1.4rem; }
+      .filters { padding: 0.5rem 1rem; }
+      .film-list { padding: 0.5rem 1rem 3rem; }
+      .count { padding: 0 1rem; }
+      .film-poster { width: 60px; min-width: 60px; height: 90px; }
+      .film-title { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"><span>Tredcroft</span> Screens</div>
+    <h1>Must Watch. Or Don't.</h1>
+    <p>Film picks — short, honest, no fluff.</p>
+  </header>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterFilms('all')">All</button>
+    <button class="filter-btn" onclick="filterFilms('hui')">👍 Hui</button>
+    <button class="filter-btn" onclick="filterFilms('meh')">🤷 Meh</button>
+    <button class="filter-btn" onclick="filterFilms('pfui')">👎 Pfui</button>
+    <button class="filter-btn" onclick="filterFilms('Action')">Action</button>
+    <button class="filter-btn" onclick="filterFilms('Thriller')">Thriller</button>
+    <button class="filter-btn" onclick="filterFilms('Sci-Fi')">Sci-Fi</button>
+    <button class="filter-btn" onclick="filterFilms('Horror')">Horror</button>
+    <button class="filter-btn" onclick="filterFilms('Cult')">Cult</button>
+    <button class="filter-btn" onclick="filterFilms('Drama')">Drama</button>
+  </div>
+
+  <div class="count" id="count"></div>
+  <div class="film-list" id="filmList"></div>
+
+  <script>
+    // ============================================================
+    //  FILM DATABASE — edit here to add/remove/change films
+    //  rating: "hui" (must watch), "meh" (take it or leave it), "pfui" (don't bother)
+    //  poster: emoji fallback — replace with real image URLs if you want
+    // ============================================================
+    const films = [
+      {
+        title: "Cobra",
+        year: 1986,
+        genre: "Action",
+        rating: "hui",
+        verdict: "Peak Stallone absurdity. Mirrored shades, matchstick, laser-scoped pistol. Pure 80s testosterone cinema.",
+        poster: "🐍"
+      },
+      {
+        title: "Manhunter",
+        year: 1986,
+        genre: "Thriller",
+        rating: "hui",
+        verdict: "Michael Mann's Hannibal Lecter before Silence. Neon-drenched, synth-scored perfection. Better than the remake.",
+        poster: "🔍"
+      },
+      {
+        title: "Videodrome",
+        year: 1983,
+        genre: "Sci-Fi",
+        rating: "hui",
+        verdict: "Cronenberg at his most unhinged. Long live the new flesh. Still disturbing after 40 years.",
+        poster: "📺"
+      },
+      {
+        title: "The Hidden",
+        year: 1987,
+        genre: "Sci-Fi",
+        rating: "hui",
+        verdict: "Alien body-snatcher buddy cop film. Criminally underrated. Kyle MacLachlan being weird before Twin Peaks.",
+        poster: "👽"
+      },
+      {
+        title: "Near Dark",
+        year: 1987,
+        genre: "Horror",
+        rating: "hui",
+        verdict: "Kathryn Bigelow's vampire western. Bar scene alone is worth it. Bill Paxton steals every frame.",
+        poster: "🧛"
+      },
+      {
+        title: "Runaway",
+        year: 1984,
+        genre: "Sci-Fi",
+        rating: "meh",
+        verdict: "Tom Selleck vs killer robots. Gene Simmons as villain. Fun premise, sloppy execution.",
+        poster: "🤖"
+      },
+      {
+        title: "Dreamscape",
+        year: 1984,
+        genre: "Sci-Fi",
+        rating: "meh",
+        verdict: "Inception 25 years earlier but with Dennis Quaid. Interesting concept, dated effects, decent ride.",
+        poster: "💭"
+      },
+      {
+        title: "Raw Deal",
+        year: 1986,
+        genre: "Action",
+        rating: "pfui",
+        verdict: "Arnie on autopilot. Forgettable mob plot, zero memorable lines. His weakest 80s output.",
+        poster: "💪"
+      },
+      {
+        title: "Thief",
+        year: 1981,
+        genre: "Thriller",
+        rating: "hui",
+        verdict: "Mann's debut. James Caan cracking safes to Tangerine Dream. Every frame a neon painting.",
+        poster: "💎"
+      },
+      {
+        title: "Class of 1984",
+        year: 1982,
+        genre: "Cult",
+        rating: "hui",
+        verdict: "High school gang warfare before The Warriors went mainstream. Nasty, raw, unapologetic.",
+        poster: "🏫"
+      },
+      {
+        title: "Society",
+        year: 1989,
+        genre: "Horror",
+        rating: "hui",
+        verdict: "Rich people are literally monsters. The 'shunting' finale is one of the most insane scenes ever filmed.",
+        poster: "🫠"
+      },
+      {
+        title: "Megaforce",
+        year: 1982,
+        genre: "Action",
+        rating: "pfui",
+        verdict: "Flying motorcycles, gold spandex, Barry Bostwick's headband. So bad it circles back to… no, it's just bad.",
+        poster: "🏍️"
+      },
+    ];
+
+    // ============================================================
+    //  RENDER LOGIC — no need to touch this
+    // ============================================================
+    const ratingLabels = { hui: "👍 HUI", meh: "🤷 MEH", pfui: "👎 PFUI" };
+
+    function renderFilms(list) {
+      const container = document.getElementById('filmList');
+      const countEl = document.getElementById('count');
+      countEl.textContent = `${list.length} film${list.length !== 1 ? 's' : ''}`;
+
+      container.innerHTML = list.map(f => `
+        <div class="film-card" data-rating="${f.rating}" data-genre="${f.genre}">
+          <div class="film-poster">
+            ${f.posterUrl
+              ? `<img src="${f.posterUrl}" alt="${f.title}" loading="lazy">`
+              : f.poster || '🎬'}
+          </div>
+          <div class="film-info">
+            <div class="film-header">
+              <span class="film-title">${f.title}</span>
+              <span class="film-year">${f.year}</span>
+            </div>
+            <div class="film-meta">
+              <span class="badge ${f.rating}">${ratingLabels[f.rating]}</span>
+              <span class="film-genre">${f.genre}</span>
+            </div>
+            <div class="film-verdict">${f.verdict}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterFilms(filter) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active',
+          btn.textContent.trim().toLowerCase().includes(filter.toLowerCase()) ||
+          (filter === 'all' && btn.textContent.trim() === 'All')
+        );
+      });
+
+      if (filter === 'all') {
+        renderFilms(films);
+      } else if (['hui', 'meh', 'pfui'].includes(filter)) {
+        renderFilms(films.filter(f => f.rating === filter));
+      } else {
+        renderFilms(films.filter(f => f.genre === filter));
+      }
+    }
+
+    // Initial render
+    renderFilms(films);
+  </script>
+
+</body>
+</html>
