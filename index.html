@@ -102,8 +102,8 @@
       color: #fff;
     }
 
-    /* FILM LIST */
-    .film-list {
+    /* show LIST */
+    .show-list {
       max-width: 720px;
       margin: 0 auto;
       padding: 0.75rem 1.5rem 3rem;
@@ -112,8 +112,8 @@
       gap: 0.75rem;
     }
 
-    /* FILM CARD */
-    .film-card {
+    /* show CARD */
+    .show-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -124,12 +124,12 @@
       cursor: default;
     }
 
-    .film-card:hover {
+    .show-card:hover {
       background: var(--surface-hover);
       border-color: #2a2a44;
     }
 
-    .film-poster {
+    .show-poster {
       width: 72px;
       min-width: 72px;
       height: 108px;
@@ -143,13 +143,13 @@
       flex-shrink: 0;
     }
 
-    .film-poster img {
+    .show-poster img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .film-info {
+    .show-info {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -157,14 +157,14 @@
       min-width: 0;
     }
 
-    .film-header {
+    .show-header {
       display: flex;
       align-items: baseline;
       gap: 0.5rem;
       margin-bottom: 0.15rem;
     }
 
-    .film-title {
+    .show-title {
       font-size: 1rem;
       font-weight: 600;
       letter-spacing: -0.01em;
@@ -173,26 +173,26 @@
       text-overflow: ellipsis;
     }
 
-    .film-year {
+    .show-year {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
       color: var(--text-muted);
       flex-shrink: 0;
     }
 
-    .film-meta {
+    .show-meta {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 0.35rem;
     }
 
-    .film-genre {
+    .show-genre {
       font-size: 0.75rem;
       color: var(--text-muted);
     }
 
-    .film-verdict {
+    .show-verdict {
       font-size: 0.85rem;
       color: #b0b0cc;
       line-height: 1.4;
@@ -249,10 +249,10 @@
       header { padding: 1.5rem 1rem 0.75rem; }
       header h1 { font-size: 1.4rem; }
       .filters { padding: 0.5rem 1rem; }
-      .film-list { padding: 0.5rem 1rem 3rem; }
+      .show-list { padding: 0.5rem 1rem 3rem; }
       .count { padding: 0 1rem; }
-      .film-poster { width: 60px; min-width: 60px; height: 90px; }
-      .film-title { font-size: 0.9rem; }
+      .show-poster { width: 60px; min-width: 60px; height: 90px; }
+      .show-title { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -265,28 +265,28 @@
   </header>
 
   <div class="filters">
-    <button class="filter-btn active" onclick="filterFilms('all')">All</button>
-    <button class="filter-btn" onclick="filterFilms('watch')">👍 watch</button>
-    <button class="filter-btn" onclick="filterFilms('meh')">🤷 meh</button>
-    <button class="filter-btn" onclick="filterFilms('skip')">👎 skip</button>
-    <button class="filter-btn" onclick="filterFilms('Action')">Action</button>
-    <button class="filter-btn" onclick="filterFilms('Thriller')">Thriller</button>
-    <button class="filter-btn" onclick="filterFilms('Sci-Fi')">Sci-Fi</button>
-    <button class="filter-btn" onclick="filterFilms('Horror')">Horror</button>
-    <button class="filter-btn" onclick="filterFilms('Cult')">Cult</button>
-    <button class="filter-btn" onclick="filterFilms('Drama')">Drama</button>
+    <button class="filter-btn active" onclick="filtershows('all')">All</button>
+    <button class="filter-btn" onclick="filtershows('watch')">👍 watch</button>
+    <button class="filter-btn" onclick="filtershows('meh')">🤷 meh</button>
+    <button class="filter-btn" onclick="filtershows('skip')">👎 skip</button>
+    <button class="filter-btn" onclick="filtershows('Action')">Action</button>
+    <button class="filter-btn" onclick="filtershows('Thriller')">Thriller</button>
+    <button class="filter-btn" onclick="filtershows('Sci-Fi')">Sci-Fi</button>
+    <button class="filter-btn" onclick="filtershows('Horror')">Horror</button>
+    <button class="filter-btn" onclick="filtershows('Cult')">Cult</button>
+    <button class="filter-btn" onclick="filtershows('Drama')">Drama</button>
   </div>
 
   <div class="count" id="count"></div>
-  <div class="film-list" id="filmList"></div>
+  <div class="show-list" id="showList"></div>
 
   <script>
     // ============================================================
-    //  FILM DATABASE — edit here to add/remove/change films
+    //  show DATABASE — edit here to add/remove/change shows
     //  rating: "watch" (it's good), "meh" (50:50), "skip" (don't bother)
     //  poster: emoji fallback — replace with real image URLs if you want
     // ============================================================
-    const films = [
+    const shows = [
       {
         title: "I Will Find You (Mini-Series)",
         year: 2026,
@@ -312,7 +312,7 @@
         posterUrl: "https://image.tmdb.org/t/p/original/f7tksyddK3VvismfoWCwpXPqz0x.jpg"
       },
       {
-        title: "Small Prophets",
+        title: "Small Prophets (Season 1)",
         year: 2026,
         genre: "Comedy, Drama, Mystery",
         rating: "watch",
@@ -372,7 +372,7 @@
         year: 1989,
         genre: "Horror",
         rating: "watch",
-        verdict: "Rich people are literally monsters. The 'shunting' finale is one of the most insane scenes ever filmed.",
+        verdict: "Rich people are literally monsters. The 'shunting' finale is one of the most insane scenes ever showed.",
         poster: "🫠"
       },
       {
@@ -390,34 +390,34 @@
     // ============================================================
     const ratingLabels = { watch: "👍 watch", meh: "🤷 meh", skip: "👎 skip" };
 
-    function renderFilms(list) {
-      const container = document.getElementById('filmList');
+    function rendershows(list) {
+      const container = document.getElementById('showList');
       const countEl = document.getElementById('count');
-      countEl.textContent = `${list.length} film${list.length !== 1 ? 's' : ''}`;
+      countEl.textContent = `${list.length} show${list.length !== 1 ? 's' : ''}`;
 
       container.innerHTML = list.map(f => `
-        <div class="film-card" data-rating="${f.rating}" data-genre="${f.genre}">
-          <div class="film-poster">
+        <div class="show-card" data-rating="${f.rating}" data-genre="${f.genre}">
+          <div class="show-poster">
             ${f.posterUrl
               ? `<img src="${f.posterUrl}" alt="${f.title}" loading="lazy">`
               : f.poster || '🎬'}
           </div>
-          <div class="film-info">
-            <div class="film-header">
-              <span class="film-title">${f.title}</span>
-              <span class="film-year">${f.year}</span>
+          <div class="show-info">
+            <div class="show-header">
+              <span class="show-title">${f.title}</span>
+              <span class="show-year">${f.year}</span>
             </div>
-            <div class="film-meta">
+            <div class="show-meta">
               <span class="badge ${f.rating}">${ratingLabels[f.rating]}</span>
-              <span class="film-genre">${f.genre}</span>
+              <span class="show-genre">${f.genre}</span>
             </div>
-            <div class="film-verdict">${f.verdict}</div>
+            <div class="show-verdict">${f.verdict}</div>
           </div>
         </div>
       `).join('');
     }
 
-    function filterFilms(filter) {
+    function filtershows(filter) {
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.toggle('active',
           btn.textContent.trim().toLowerCase().includes(filter.toLowerCase()) ||
@@ -426,16 +426,16 @@
       });
 
       if (filter === 'all') {
-        renderFilms(films);
+        rendershows(shows);
       } else if (['watch', 'meh', 'skip'].includes(filter)) {
-        renderFilms(films.filter(f => f.rating === filter));
+        rendershows(shows.filter(f => f.rating === filter));
       } else {
-        renderFilms(films.filter(f => f.genre === filter));
+        rendershows(shows.filter(f => f.genre === filter));
       }
     }
 
     // Initial render
-    renderFilms(films);
+    rendershows(shows);
   </script>
 
 </body>
