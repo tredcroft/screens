@@ -259,16 +259,16 @@
 <body>
 
   <header>
-    <div class="logo"><span>Screens:</span> series and movies</div>
+    <div class="logo"><span>Screens:</span> movies and series</div>
     <h1>Watch. Maybe. Skip.</h1>
     <p>Screen picks — short, honest, no fluff.</p>
   </header>
 
   <div class="filters">
     <button class="filter-btn active" onclick="filterFilms('all')">All</button>
-    <button class="filter-btn" onclick="filterFilms('watch')">👍 watch</button>
-    <button class="filter-btn" onclick="filterFilms('meh')">🤷 meh</button>
-    <button class="filter-btn" onclick="filterFilms('skip')">👎 skip</button>
+    <button class="filter-btn" onclick="filterFilms('watch')">👍 >watch</button>
+    <button class="filter-btn" onclick="filterFilms('meh')">🤷 >meh</button>
+    <button class="filter-btn" onclick="filterFilms('skip')">👎 >skip</button>
     <button class="filter-btn" onclick="filterFilms('Action')">Action</button>
     <button class="filter-btn" onclick="filterFilms('Thriller')">Thriller</button>
     <button class="filter-btn" onclick="filterFilms('Sci-Fi')">Sci-Fi</button>
@@ -284,7 +284,7 @@
     // ============================================================
     //  FILM DATABASE — edit here to add/remove/change films
     //  rating: "watch" (it's good), "meh" (50:50), "skip" (don't bother)
-    //  poster: emoji fallback — replace with real image URLs if you want via TMdb
+    //  poster: emoji fallback — replace with real image URLs if you want
     // ============================================================
     const films = [
       {
@@ -312,12 +312,12 @@
         posterUrl: "https://image.tmdb.org/t/p/original/f7tksyddK3VvismfoWCwpXPqz0x.jpg"
       },
       {
-        title: "Small Prophets (Season 1)",
-        year: 2026,
-        genre: "Comedy, Drama, Mystery",
+        title: "The Hidden",
+        year: 1987,
+        genre: "Sci-Fi",
         rating: "watch",
-        verdict: "Not your ordinary show. While its premise is delightfully bizarre, it is the deeply flawed but lovable characters that you hooked".
-        posterUrl: "https://www.themoviedb.org/t/p/w1280/dwa5S9efdYhnxMBjUtRdrmlHT5e.jpg"
+        verdict: "Alien body-snatcher buddy cop film. Criminally underrated. Kyle MacLachlan being weird before Twin Peaks.",
+        poster: "👽"
       },
       {
         title: "Near Dark",
