@@ -19,8 +19,8 @@
       --accent-blue: #4a6cf7;
       --accent-violet: #8b5cf6;
       --accent-gradient: linear-gradient(135deg, #4a6cf7, #8b5cf6);
-      --hui: #22c55e;
-      --pfui: #ef4444;
+      --watch: #22c55e;
+      --skip: #ef4444;
       --meh: #f59e0b;
       --radius: 10px;
     }
@@ -216,15 +216,15 @@
       flex-shrink: 0;
     }
 
-    .badge.hui {
+    .badge.watch {
       background: rgba(34, 197, 94, 0.12);
-      color: var(--hui);
+      color: var(--watch);
       border: 1px solid rgba(34, 197, 94, 0.2);
     }
 
-    .badge.pfui {
+    .badge.skip {
       background: rgba(239, 68, 68, 0.12);
-      color: var(--pfui);
+      color: var(--skip);
       border: 1px solid rgba(239, 68, 68, 0.2);
     }
 
@@ -266,9 +266,9 @@
 
   <div class="filters">
     <button class="filter-btn active" onclick="filterFilms('all')">All</button>
-    <button class="filter-btn" onclick="filterFilms('hui')">👍 >watch</button>
+    <button class="filter-btn" onclick="filterFilms('watch')">👍 >watch</button>
     <button class="filter-btn" onclick="filterFilms('meh')">🤷 >meh</button>
-    <button class="filter-btn" onclick="filterFilms('pfui')">👎 >skip</button>
+    <button class="filter-btn" onclick="filterFilms('skip')">👎 >skip</button>
     <button class="filter-btn" onclick="filterFilms('Action')">Action</button>
     <button class="filter-btn" onclick="filterFilms('Thriller')">Thriller</button>
     <button class="filter-btn" onclick="filterFilms('Sci-Fi')">Sci-Fi</button>
@@ -299,7 +299,7 @@
         title: "Manhunter",
         year: 1986,
         genre: "Thriller",
-        rating: "hui",
+        rating: "watch",
         verdict: "Michael Mann's Hannibal Lecter before Silence. Neon-drenched, synth-scored perfection. Better than the remake.",
         poster: "🔍"
       },
@@ -307,7 +307,7 @@
         title: "Videodrome",
         year: 1983,
         genre: "Sci-Fi",
-        rating: "hui",
+        rating: "watch",
         verdict: "Cronenberg at his most unhinged. Long live the new flesh. Still disturbing after 40 years.",
         poster: "📺"
       },
@@ -315,7 +315,7 @@
         title: "The Hidden",
         year: 1987,
         genre: "Sci-Fi",
-        rating: "hui",
+        rating: "watch",
         verdict: "Alien body-snatcher buddy cop film. Criminally underrated. Kyle MacLachlan being weird before Twin Peaks.",
         poster: "👽"
       },
@@ -323,7 +323,7 @@
         title: "Near Dark",
         year: 1987,
         genre: "Horror",
-        rating: "hui",
+        rating: "watch",
         verdict: "Kathryn Bigelow's vampire western. Bar scene alone is worth it. Bill Paxton steals every frame.",
         poster: "🧛"
       },
@@ -347,7 +347,7 @@
         title: "Raw Deal",
         year: 1986,
         genre: "Action",
-        rating: "pfui",
+        rating: "skip",
         verdict: "Arnie on autopilot. Forgettable mob plot, zero memorable lines. His weakest 80s output.",
         poster: "💪"
       },
@@ -355,7 +355,7 @@
         title: "Thief",
         year: 1981,
         genre: "Thriller",
-        rating: "hui",
+        rating: "watch",
         verdict: "Mann's debut. James Caan cracking safes to Tangerine Dream. Every frame a neon painting.",
         poster: "💎"
       },
@@ -363,7 +363,7 @@
         title: "Class of 1984",
         year: 1982,
         genre: "Cult",
-        rating: "hui",
+        rating: "watch",
         verdict: "High school gang warfare before The Warriors went mainstream. Nasty, raw, unapologetic.",
         poster: "🏫"
       },
@@ -371,7 +371,7 @@
         title: "Society",
         year: 1989,
         genre: "Horror",
-        rating: "hui",
+        rating: "watch",
         verdict: "Rich people are literally monsters. The 'shunting' finale is one of the most insane scenes ever filmed.",
         poster: "🫠"
       },
@@ -379,7 +379,7 @@
         title: "Megaforce",
         year: 1982,
         genre: "Action",
-        rating: "pfui",
+        rating: "skip",
         verdict: "Flying motorcycles, gold spandex, Barry Bostwick's headband. So bad it circles back to… no, it's just bad.",
         poster: "🏍️"
       },
@@ -388,7 +388,7 @@
     // ============================================================
     //  RENDER LOGIC — no need to touch this
     // ============================================================
-    const ratingLabels = { hui: "👍 HUI", meh: "🤷 MEH", pfui: "👎 PFUI" };
+    const ratingLabels = { watch: "👍 watch", meh: "🤷 meh", skip: "👎 skip" };
 
     function renderFilms(list) {
       const container = document.getElementById('filmList');
@@ -427,7 +427,7 @@
 
       if (filter === 'all') {
         renderFilms(films);
-      } else if (['hui', 'meh', 'pfui'].includes(filter)) {
+      } else if (['watch', 'meh', 'skip'].includes(filter)) {
         renderFilms(films.filter(f => f.rating === filter));
       } else {
         renderFilms(films.filter(f => f.genre === filter));
